@@ -36,6 +36,7 @@ if somehing get high cost then owners would know that the items cretaed using th
 
 CREATE SEQUENCE id_seq 
     START WITH 1001;
+
 CREATE TABLE employees (
     id BIGINT PRIMARY KEY DEFAULT nextval('id_seq'),
     name VARCHAR(500) NOT NULL,
