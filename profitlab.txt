@@ -1,0 +1,55 @@
+profitlab
+
+this is a software that targeting on fine dine restaurants.
+
+those restaurants have an average margine of 5-10%. sothis is not a stable one.inorder to attain a stable margin and 
+avoid loss this software will be usefull.
+
+the things that affect restaurant
+1.raw materials
+2.menu
+3.pos
+4.
+
+this software acts as a bridge between vendors and restaurant owners
+one restaurant giving the monthly expenses bills to profitlab ,and profitlab comes to know the each expenses separately and 
+identify where the expense going high and low
+ie,suppose a raw material cost getting high due to less availability,so the usage of that raw material should be reduced.
+if a raw material cost getting low due to more avaialability,so it can be efficiently used
+
+
+from menu,it will only take the most selling items.ie, only analysing the most sellin items
+
+before profitlab
+
+it is hard to know which things causing the cost high from a list of items
+inorder to reduce the cost we dont know which raw material or which vendor should be choose
+
+after profitlab
+
+it will give the cost of each raw material that we are using and difference in the price compared to previous month
+profit lab can guide the rest owner to find the better vendor for maintain the profit
+if somehing get high cost then owners would know that the items cretaed using this materials should have to limit
+
+
+
+
+CREATE SEQUENCE id_seq 
+    START WITH 1001;
+
+CREATE TABLE employees (
+    id BIGINT PRIMARY KEY DEFAULT nextval('id_seq'),
+    name VARCHAR(500) NOT NULL,
+    department VARCHAR(500) NOT NULL,
+    designation VARCHAR(500) NOT NULL,
+    salary DECIMAL NOT NULL
+);
+
+INSERT INTO employees (name, department, designation, salary)
+VALUES 
+    ('Alice Smith', 'HR', 'HR Manager', 65000.00),
+    ('Bob Johnson', 'Marketing', 'Marketing Specialist', 55000.00),
+    ('Charlie Brown', 'Finance', 'Financial Analyst', 70000.00);
+
+
+SELECT * FROM employees;
