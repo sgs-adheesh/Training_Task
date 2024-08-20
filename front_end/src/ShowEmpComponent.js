@@ -15,6 +15,8 @@ function ShowEmpComponent() {
         }
       };
 
+     
+
       const handleShowTable = () => {
         fetchData();
         //setShowTable(true);
@@ -23,7 +25,9 @@ function ShowEmpComponent() {
     
   return (
     <div>
-        <button onClick={handleShowTable}>Show All Employees</button>
+     
+     <h1 className="text-2xl font-bold underline">List of Employees</h1>
+        <button  onClick={handleShowTable}>Show All Employees</button>
         <table>
         <thead>
           <tr>
@@ -46,7 +50,8 @@ function ShowEmpComponent() {
           ))}
         </tbody>
       </table>
-    </div>
+      </div>
+   
   )
 }
 

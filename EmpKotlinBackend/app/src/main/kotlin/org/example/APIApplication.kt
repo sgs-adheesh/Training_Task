@@ -6,7 +6,11 @@ import io.dropwizard.core.setup.Environment
 import io.dropwizard.jdbi3.JdbiFactory
 import jakarta.servlet.DispatcherType
 import org.eclipse.jetty.servlets.CrossOriginFilter
+import org.example.resources.DepartmentResource
+import org.example.resources.DesignationResource
 import org.example.resources.EmployeeResource
+import org.example.services.DepartmentService
+import org.example.services.DesignationService
 import org.example.services.EmployeeService
 import java.util.*
 
@@ -28,8 +32,12 @@ class APIApplication :Application<Configuration>(){
         val factory = JdbiFactory()
         val jdbi = factory.build(env, config.database, "postgresql")
         val employeeService = EmployeeService(jdbi)
+        val departmentService= DepartmentService(jdbi)
+        val designationService= DesignationService(jdbi)
 
         env.jersey().register(EmployeeResource(employeeService))
+        env.jersey().register(DepartmentResource(departmentService))
+        env.jersey().register(DesignationResource(designationService))
     }
 
     override fun initialize(bootstrap: Bootstrap<Configuration>?) {

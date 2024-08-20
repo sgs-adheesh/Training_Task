@@ -1,38 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect} from 'react';
 import './Emp.css'
+import axios from 'axios';
 export const EmployeeForm = () => {
   const [name, setName] = useState('');
   const [department, setDepartment] = useState('');
   const [designation, setDesignation] = useState('');
   const [salary, setSalary] = useState('');
 
-  const departmentOption=['HR','IT','Admin','Finance']
+  const[deptrecords,setDeptrecords]=useState([])
 
-  const designationOptions={
-    HR:['People Management',
-        'Talent Acquisition HR Intern',
-        'Staffing Specialist',
-        'Manager',],
-    IT:['Web Developer',
-        'Analyst',
-        'Cloud Architect',
-        'Database Administrator', 
-        'DevOps Engineer',
-        'Manager', ],
-    Admin:['Receptionist', 
-        'Auditing Clerk',
-        'office Assistant',
-        'Manager', ],
-    Finance:['Financial Analyst',
-        'Chartered accountant', 
-        'Financial advisor',
-        'Manager', ],
-  }
+  const[desigrecord,setDesigrecord]=useState([])
+
+  useEffect(() => {
+
+    const fetchDept = async () => {
+        try {
+            const response = await axios.get('http://localhost:8001/department');
+            setDeptrecords(response.data);
+            //console.log(deptrecords)
+        } catch (err) {
+            console.error('Error fetching data:', err);
+        }
+    };
+    
+
+    fetchDept();
+
+},[]);
+const fetchDesig = async (dept_id) => {
+    try {
+        const response = await axios.get(`http://localhost:8001/designation/${dept_id}`);
+        setDesigrecord(response.data);
+        console.log(desigrecord)
+    } catch (err) {
+        console.error('Error fetching data:', err);
+    }
+};
+
 
   const handleDepartmentChange=(e)=>{
+        
+        console.log("handle departnment change")
         setDepartment(e.target.value)
-        setDesignation('')
+        console.log(deptrecords)
+        //setDesignation('')
+        const selectedDept = deptrecords.find(dept => dept.department === e.target.value);
+        if(selectedDept!==null){
+            fetchDesig(selectedDept.id)
+        }
+        
+ 
   }
+  
 
   const handleSubmit=(e)=>{
     e.preventDefault()
@@ -56,8 +75,8 @@ export const EmployeeForm = () => {
 
   return(
     <form onSubmit={handleSubmit} >
-        <div>
-            <label>Name:</label>
+        <div class="form-group">
+            <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name:</label>
             <input 
                 type='text'
                 value={name}
@@ -65,36 +84,36 @@ export const EmployeeForm = () => {
                 required
             />
         </div>
-        <div>
-            <label>Department:</label>
+        <div class="form-group">
+            <label for="department" class="block text-sm font-medium leading-6 text-gray-900">Department:</label>
             <select 
                 value={department}
                 onChange={handleDepartmentChange}
                 required>
                 
                 <option value="" disabled>select department</option>
-                {departmentOption.map((dept)=>(
-                    <option key={dept} value={dept} >{dept}</option>
+                {deptrecords.map((dept)=>(
+                    <option key={dept.id}  value={dept.department} >{dept.department}</option>
                 ))}
 
             </select>
         </div>
 
-        <div>
-            <label>Designation:</label>
+        <div class="form-group">
+            <label for="designation" class="block text-sm font-medium leading-6 text-gray-900">Designation:</label>
             <select
                 value={designation}
                 onChange={(e)=>setDesignation(e.target.value)}
                 required>
 
                 <option value="" disabled>select designation</option>
-                {department&&designationOptions[department].map((desig)=>(
-                    <option key={desig} value={desig}>{desig}</option>
+                {department&&desigrecord.map((desig)=>(
+                    <option key={desig.id} value={desig.designation}>{desig.designation}</option>
                 ))}
             </select>
         </div>
-        <div>
-            <label>Salary:</label>
+        <div class="form-group">
+            <label for="salary" class="block text-sm font-medium leading-6 text-gray-900">Salary:</label>
             <input
                 type='number'
                 value={salary}
