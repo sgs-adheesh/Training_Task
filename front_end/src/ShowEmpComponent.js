@@ -3,7 +3,7 @@ import './ShowEmp.css'
 function ShowEmpComponent() {
 
     const[records,setRecords]=useState([])
-    //const [showTable, setShowTable] = useState(false);
+    const [showTable, setShowTable] = useState(false);
 
     const fetchData = async () => {
         try {
@@ -19,16 +19,16 @@ function ShowEmpComponent() {
 
       const handleShowTable = () => {
         fetchData();
-        //setShowTable(true);
+        setShowTable(!showTable);
       };
 
     
   return (
     <div>
      
-     <h1 className="text-2xl font-bold underline">List of Employees</h1>
+     <h1 className='text-xl font-bold underline '>List of Employees</h1>
         <button  onClick={handleShowTable}>Show All Employees</button>
-        <table>
+        {showTable&&(<table>
         <thead>
           <tr>
             <th>ID</th>
@@ -40,6 +40,7 @@ function ShowEmpComponent() {
         </thead>
         <tbody>
           {records.map((item,index) => (
+            
             <tr key={index}>
               <td>{item.id}</td>
               <td>{item.name}</td>
@@ -49,7 +50,7 @@ function ShowEmpComponent() {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table>)}
       </div>
    
   )

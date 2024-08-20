@@ -123,7 +123,7 @@ const fetchDesig = async (dept_id) => {
             />
         </div>
 
-        <button type='submit'>Submit</button>
+        <button type='submit' class="block text-sm font-medium leading-6">Submit</button>
         
     </form>
   )
