@@ -1,14 +1,26 @@
 How react works?
 
-when we run the command npm start or yarn start.Start is a alias for "react-scripts start"
-it will look for the start.js file inside react-scripts inside node modules.
-in path.js inside config we given the details of index.html and index.js as appHtml and appIndexJs respectievly.
-we are using this path.js inside the start.js and running the index.js.
-inside the index.js using reactdom we are creating a DOM root as the root element as div located in index.html with div id root.
-all other dom elements that are created in our react application will be the childrens of this dom element root.
-inside the index.js we are mentioning the app.js as a component, inside app.js only we are embedding all our components and it goes on like a chain.
+
+for web development react we need webpack.inside this web pack we will mention the needfull things to work react.
+when we run the command "npm start" or "yarn start",the "start" is a alias for "react-scripts start"
+it will look for the "start.js" file inside "react-scripts" inside "node modules".
+in "path.js" inside "config" we given the details of "index.html" and "index.js" as "appHtml" and "appIndexJs" respectievly.
+we are using this "path.js" inside the "start.js" and running the "index.js".
+inside the "index.js" using reactdom we are creating a DOM root as the "root" element as div located in "index.html" with div id "root".
+all other dom elements that are created in our react application will be the childrens of this dom element "root".
+inside the "index.js" we are mentioning the "app.js" as a component, inside "app.js" only we are embedding all our components and it goes on like a chain.
 so after creating a root dom ,the program flow will go into app.js and the components inside app.js.
 
 
 why react?
+
+
+React is a javascript libarary used to build client side application.
+Reusable component makes react more advanced when comparing to html and js.
+State management.
+when there is a change in the dom , react only updates the new parts compared to the old virtual dom.then only it will make the changes into the real dom.
+this will improve the performance.this is achieved by diffing algorithm.
+JSX allows to write html inside javascript.
+react is open source ,so lot of developers will contribute new functionalities to it.it will help other developers to do the work effective and efficient.
+
 
