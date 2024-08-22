@@ -1,11 +1,18 @@
 import React, { useState,useEffect} from 'react';
-import './Emp.css'
+import '../Emp.css'
 import axios from 'axios';
 export const EmployeeForm = () => {
   const [name, setName] = useState('');
   const [department, setDepartment] = useState('');
   const [designation, setDesignation] = useState('');
   const [salary, setSalary] = useState('');
+
+  const [error, setError] = useState({
+    name: '',
+    department: '',
+    designation: '',
+    salary: ''
+});
 
   const[deptrecords,setDeptrecords]=useState([])
 
@@ -56,23 +63,51 @@ const fetchDesig = async (dept_id) => {
   const handleSubmit=(e)=>{
     e.preventDefault()
 
-    console.log({name,department,designation,salary});
-    const Emp={name,department,designation,salary}
-    fetch("http://localhost:8001/employee",{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify(Emp)
-    }).then(()=>{
-        console.log("New Employee added");
-        
-    })
+    if(validate()){
+        console.log({name,department,designation,salary});
+        const Emp={name,department,designation,salary}
+        fetch("http://localhost:8001/employee",{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(Emp)
+        }).then(()=>{
+            console.log("New Employee added");
+            
+        })
 
-    setName('')
-    setDepartment('')
-    setDesignation('')
-    setSalary('')
+        setName('')
+        setDepartment('')
+        setDesignation('')
+        setSalary('')
+    }
+
+    
   };
 
+  const validate=()=>{
+    const newErrors={}
+    let isValid=true
+    const Emp={name,department,designation,salary}
+    if(Emp.name.length<3){
+        newErrors.name="*Name should have atleast 3 letter!"
+        isValid=false
+    }
+    if(Emp.department===''){
+        newErrors.department="*Select the department!"
+        isValid=false
+    }
+    if(Emp.designation===''){
+        newErrors.designation="*Select the designation!"
+        isValid=false
+    }
+    if(Emp.salary<=1000){
+        newErrors.salary="*Salary should greater than 1000!"
+        isValid=false
+    }
+    setError(newErrors)
+    return isValid
+    
+  }
   return(
     <form onSubmit={handleSubmit} >
         <div class="form-group">
@@ -80,16 +115,18 @@ const fetchDesig = async (dept_id) => {
             <input 
                 type='text'
                 value={name}
-                onChange={(e)=>setName(e.target.value)} 
-                required
+                onChange={(e)=>setName(e.target.value)}  
+               
             />
+            {error.name && <span style={{ color: 'red' }} >{error.name}</span>}
         </div>
+
         <div class="form-group">
             <label for="department" class="block text-sm font-medium leading-6 text-gray-900">Department:</label>
             <select 
                 value={department}
                 onChange={handleDepartmentChange}
-                required>
+                >
                 
                 <option value="" disabled>select department</option>
                 {deptrecords.map((dept)=>(
@@ -97,6 +134,7 @@ const fetchDesig = async (dept_id) => {
                 ))}
 
             </select>
+            {error.department && <span style={{ color: 'red' }} >{error.department}</span>}
         </div>
 
         <div class="form-group">
@@ -104,13 +142,14 @@ const fetchDesig = async (dept_id) => {
             <select
                 value={designation}
                 onChange={(e)=>setDesignation(e.target.value)}
-                required>
+                >
 
                 <option value="" disabled>select designation</option>
                 {department&&desigrecord.map((desig)=>(
                     <option key={desig.id} value={desig.designation}>{desig.designation}</option>
                 ))}
             </select>
+            {error.designation && <span style={{ color: 'red' }} >{error.designation}</span>}
         </div>
         <div class="form-group">
             <label for="salary" class="block text-sm font-medium leading-6 text-gray-900">Salary:</label>
@@ -118,9 +157,10 @@ const fetchDesig = async (dept_id) => {
                 type='number'
                 value={salary}
                 onChange={(e)=>setSalary(e.target.value)}
-                required
+                
 
             />
+             {error.salary && <span style={{ color: 'red' }} >{error.salary}</span>}
         </div>
 
         <button type='submit' class="block text-sm font-medium leading-6">Submit</button>

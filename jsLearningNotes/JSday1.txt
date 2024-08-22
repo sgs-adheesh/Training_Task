@@ -1,0 +1,124 @@
+JavaScript tutorials
+https://www.youtube.com/watch?v=SajRjc9KKUE&list=PL0Zuz27SZ-6Oi6xNtL_fwCrwpuqylMsgT
+
+DAY 1:
+
+->DATA TYPES:
+
+
+
+1.string -> "",''
+		typeof keyword ->typeof("adheesh") or typeof "adheesh"->o/p->string
+		
+2.number
+3.boolean
+4.undefined
+
+
+
+->VARIABLE DECLARATION:
+
+
+
+	let myName; -->camelcase,and let is the keyword
+	typeof myName --> undefined
+
+	var,let,const -->keywords
+
+
+
+->OPERATORS:
+
+
+
+	+ operator work for concatenation also.
+	let number=20;
+	let name="adhee";
+	let res=number + name;
+	typeof res --> string
+
+	let myBool = number===20;
+	typeof myBool -->boolean
+	myBool->true
+
+	==	equal to
+	===	equal value and equal type
+	!=	not equal
+	!==	not equal value or not equal type
+	>	greater than
+	<	less than
+	>=	greater than or equal to
+	<=	less than or equal to
+	?	ternary operator
+
+	<script src=""></script> -->using this tag we can write js code inside html
+
+
+
+->STRING METHODS:
+
+
+
+1.length
+						0 1 2 3 4 5 6
+	const myVariable = "A d h e e s h"
+	myVariable.length ->7
+
+2.charAt(index pos)
+
+	myVariable.charAt(0) ->A
+
+3.indexOf("sequence")
+
+	myVariable.indexOf("sh") ->5
+	myVariable.indexOf("e") ->3 -->give the first exixting index value
+
+4.lastIndexOf("sequence")
+
+	myVariable.lastIndexOf("h") -->6
+
+5.slice(start,end)
+
+	myVariable.slice(1,4) -->dhe -->4 th char wont include
+	myVariable.slice(5) --> sh -->no ending ,so it will slice all remaining after start index
+
+	end>start
+
+6.toUpperCase()
+
+	myVariable.toUpperCase() --> ADHEESH
+
+7.toLowerCase()
+
+8.includes("string")
+
+	myVariable.includes("eesh") --> true
+	myVariable.includes("gha") -->false
+
+9.split('char')
+
+	myVariable.split('e') --> ["Adh" , "esh"]
+	myVariable.split("") --> ["A","d","h","e","e","s","h"]
+
+	"john,jacob,thomas".split(",") --> ["john" , "jacob" , "thomas"]
+
+more reference:
+
+	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
+	https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Useful_string_methods
+
+
+
+->NUMBER METHODS:
+
+
+1.Number("string")
+
+	let myStr="45"
+	Number(myStr) --> 45 -->number type
+	
+	Number("adheesh") -->NaN ->Not a Number
+	Number(undefined) -->NaN ->Not a Number
+	Number(true) -->1
+	Number(false) -->0
+	

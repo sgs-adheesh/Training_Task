@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './ShowEmp.css'
+import '../ShowEmp.css'
 function ShowEmpComponent() {
 
     const[records,setRecords]=useState([])

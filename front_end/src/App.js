@@ -1,6 +1,6 @@
-import {EmployeeForm} from './EmpComponent'
-//import './Emp.css';
-import ShowEmpComponent from './ShowEmpComponent';
+import {EmployeeForm} from './component/EmpComponent'
+
+import ShowEmpComponent from './component/ShowEmpComponent';
 
 
 function App() {

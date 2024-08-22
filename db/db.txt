@@ -1,0 +1,19 @@
+CREATE SEQUENCE id_seq 
+    START WITH 1001;
+
+CREATE TABLE employees (
+    id BIGINT PRIMARY KEY DEFAULT nextval('id_seq'),
+    name VARCHAR(500) NOT NULL,
+    department VARCHAR(500) NOT NULL,
+    designation VARCHAR(500) NOT NULL,
+    salary DECIMAL NOT NULL
+);
+
+INSERT INTO employees (name, department, designation, salary)
+VALUES 
+    ('Alice Smith', 'HR', 'HR Manager', 65000.00),
+    ('Bob Johnson', 'Marketing', 'Marketing Specialist', 55000.00),
+    ('Charlie Brown', 'Finance', 'Financial Analyst', 70000.00);
+
+
+SELECT * FROM employees;
