@@ -1,0 +1,14 @@
+How react works?
+
+when we run the command npm start or yarn start.Start is a alias for "react-scripts start"
+it will look for the start.js file inside react-scripts inside node modules.
+in path.js inside config we given the details of index.html and index.js as appHtml and appIndexJs respectievly.
+we are using this path.js inside the start.js and running the index.js.
+inside the index.js using reactdom we are creating a DOM root as the root element as div located in index.html with div id root.
+all other dom elements that are created in our react application will be the childrens of this dom element root.
+inside the index.js we are mentioning the app.js as a component, inside app.js only we are embedding all our components and it goes on like a chain.
+so after creating a root dom ,the program flow will go into app.js and the components inside app.js.
+
+
+why react?
+
