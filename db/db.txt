@@ -17,3 +17,47 @@ VALUES
 
 
 SELECT * FROM employees;
+
+
+
+CREATE SEQUENCE id_dept 
+    START WITH 1;
+
+CREATE TABLE departments(
+    id BIGINT PRIMARY KEY DEFAULT nextval('id_dept'),
+    department VARCHAR(500) NOT NULL,
+    
+);
+
+INSERT INTO employees (name, department, designation, salary)
+VALUES 
+    ('HR'),
+    ('Marketing'),
+    (Finance'),
+    ('IT');
+
+
+SELECT * FROM departments;
+
+
+
+
+CREATE SEQUENCE id_desig 
+    START WITH 1;
+
+CREATE TABLE designations(
+    id BIGINT PRIMARY KEY DEFAULT nextval('id_desig'),
+    designation VARCHAR(500) NOT NULL,
+    department_id BIGINT,
+    FOREIGN KEY (department_id) REFERENCES department(id)
+    
+);
+
+INSERT INTO designation (designation_name, department_id) VALUES
+('HR Manager', 1),
+('Software Engineer', 2),
+('Marketing Specialist', 3);
+
+
+
+SELECT * FROM designations;
