@@ -11,13 +11,16 @@ class EmployeeService @Inject constructor(private val jdbi: Jdbi) {
 
     fun addEmployee(emp: Employee): String {
         println("in service addEmp")
-        val empDup = Employee(emp.getName());
+
         val employees: List<Employee> = db.getAll().toList()
-        if (!employees.contains(empDup)) {
-            db.addEmployee(emp.getName(), emp.getDepartment(), emp.getDesignation(), emp.getSalary())
-            return "Employee added Successfully"
-        }
-        throw CustomException("Employee name is already existing")
+
+            if (employees.any{it.getName().equals(emp.getName())}) {
+                throw CustomException("Employee name is already existing")
+            }
+
+        db.addEmployee(emp.getName(), emp.getDepartment(), emp.getDesignation(), emp.getSalary())
+        return "Employee added Successfully"
+
 
     }
 
