@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <br></br>
-      <button onClick={() => setShow(!show)}>{show ? "SHOW" : "ADD"}</button>
+      <button style={{backgroundColor:'blue'}}onClick={() => setShow(!show)}>{show ? "SHOW details" : "ADD employee"}</button>
       {show ? <EmployeeForm /> : <ShowEmpComponent />}
 
     </div>

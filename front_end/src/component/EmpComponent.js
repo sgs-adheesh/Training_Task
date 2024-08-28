@@ -127,8 +127,10 @@ export const EmployeeForm = () => {
     }
     return (
         <form onSubmit={handleSubmit} >
-        <h1 className="text-3xl font-bold text-center">Registration Form</h1>
-
+        <br></br>
+        
+        <h1 className="text-3xl font-bold text-center  bg-slate-500 bg-clip-padding">REGISTRATION FORM</h1>
+        <br></br>
             {dupname
                 ? <span className="flex items-center text-sm font-bold text-red-600">
                     {response}
@@ -191,7 +193,7 @@ export const EmployeeForm = () => {
                 {error.salary && <span style={{ color: 'red' }} >{error.salary}</span>}
             </div>
 
-            <button type='submit' className="block text-sm font-medium leading-6">Submit</button>
+            <button style={{backgroundColor:'green'}} type='submit' className="block text-sm font-medium leading-6">SUBMIT</button>
 
         </form>
     )

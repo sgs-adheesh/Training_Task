@@ -25,32 +25,37 @@ function ShowEmpComponent() {
 
   return (
     <div>
+      <br></br>
+      <button style={{ backgroundColor: 'green' }} onClick={handleShowTable} >{showTable ? "HIDE details" : "GET details"}</button>
+      <br></br>
+      <br></br>
+      {showTable && (
+        <><h1 className="text-3xl font-bold text-center bg-slate-500 bg-clip-padding">EMPLOYEE LIST</h1>
+        <br></br>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Designation</th>
+                <th>Salary</th>
+              </tr>
+            </thead>
+            <tbody>
+              {records.map((item, index) => (
 
-      <h1 className="text-3xl font-bold text-center">List of Employees</h1>
-      <button onClick={handleShowTable}>{showTable?"HIDE":"GET"}</button>
-      {showTable && (<table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Department</th>
-            <th>Designation</th>
-            <th>Salary</th>
-          </tr>
-        </thead>
-        <tbody>
-          {records.map((item, index) => (
-
-            <tr key={index}>
-              <td>{item.id}</td>
-              <td>{item.name}</td>
-              <td>{item.department}</td>
-              <td>{item.designation}</td>
-              <td>{item.salary}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>)}
+                <tr key={index}>
+                  <td>{item.id}</td>
+                  <td>{item.name}</td>
+                  <td>{item.department}</td>
+                  <td>{item.designation}</td>
+                  <td>{item.salary}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>)}
     </div>
 
   )
