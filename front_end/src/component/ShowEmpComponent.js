@@ -26,8 +26,8 @@ function ShowEmpComponent() {
   return (
     <div>
 
-      <h1 className='text-xl font-bold underline '>List of Employees</h1>
-      <button onClick={handleShowTable}>Show All Employees</button>
+      <h1 className="text-3xl font-bold text-center">List of Employees</h1>
+      <button onClick={handleShowTable}>{showTable?"HIDE":"GET"}</button>
       {showTable && (<table>
         <thead>
           <tr>

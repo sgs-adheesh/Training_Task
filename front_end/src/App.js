@@ -1,14 +1,15 @@
-import {EmployeeForm} from './component/EmpComponent'
-import React from 'react'
+import { EmployeeForm } from './component/EmpComponent'
+import React, { useState } from 'react'
 import ShowEmpComponent from './component/ShowEmpComponent';
 
 
 function App() {
+  const [show, setShow] = useState(true)
   return (
     <div className="App">
-     <h1 className="text-3xl font-bold underline">Employee Registration Form</h1>
-      <EmployeeForm/>
-      <ShowEmpComponent/>
+      <br></br>
+      <button onClick={() => setShow(!show)}>{show ? "SHOW" : "ADD"}</button>
+      {show ? <EmployeeForm /> : <ShowEmpComponent />}
 
     </div>
   );

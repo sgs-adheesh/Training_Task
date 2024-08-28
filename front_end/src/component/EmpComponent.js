@@ -127,6 +127,8 @@ export const EmployeeForm = () => {
     }
     return (
         <form onSubmit={handleSubmit} >
+        <h1 className="text-3xl font-bold text-center">Registration Form</h1>
+
             {dupname
                 ? <span className="flex items-center text-sm font-bold text-red-600">
                     {response}
