@@ -7,6 +7,11 @@ data class Employee(
     private var designation: String = "",
     private var salary: Double = 0.0
 ) {
+    constructor(name: String) : this() {
+
+        this.name = name
+
+    }
 
     fun getId(): Int {
         return id

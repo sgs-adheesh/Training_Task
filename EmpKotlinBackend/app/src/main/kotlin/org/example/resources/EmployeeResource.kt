@@ -18,12 +18,12 @@ class EmployeeResource @Inject constructor(private val empService:EmployeeServic
     @Consumes(MediaType.APPLICATION_JSON)
     fun addEmployee(emp:Employee):Response{
         return try {
-            println("in resorce post")
-            var resp=empService.addEmployee(emp)
-            Response.status(Response.Status.CREATED).build()
+            println("in resource post")
+            val resp=empService.addEmployee(emp)
+            Response.ok(resp).build()
         } catch (e: Exception) {
             logger.error("Failed to add employee", e)
-            Response.serverError().entity("Internal Server Error").build()
+            Response.serverError().entity("Internal Server Error..Failed to add employee").build()
         }
     }
 

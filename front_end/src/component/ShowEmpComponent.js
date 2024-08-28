@@ -1,34 +1,34 @@
 import React, { useState } from 'react'
 import '../ShowEmp.css'
+import axios from 'axios';
 function ShowEmpComponent() {
 
-    const[records,setRecords]=useState([])
-    const [showTable, setShowTable] = useState(false);
+  const [records, setRecords] = useState([])
+  const [showTable, setShowTable] = useState(false);
 
-    const fetchData = async () => {
-        try {
-          const response = await fetch('http://localhost:8001/employee');
-          const result = await response.json();
-          setRecords(result);
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      };
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://localhost:8001/employee');
+      setRecords(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
-     
 
-      const handleShowTable = () => {
-        fetchData();
-        setShowTable(!showTable);
-      };
 
-    
+  const handleShowTable = () => {
+    fetchData();
+    setShowTable(!showTable);
+  };
+
+
   return (
     <div>
-     
-     <h1 className='text-xl font-bold underline '>List of Employees</h1>
-        <button  onClick={handleShowTable}>Show All Employees</button>
-        {showTable&&(<table>
+
+      <h1 className='text-xl font-bold underline '>List of Employees</h1>
+      <button onClick={handleShowTable}>Show All Employees</button>
+      {showTable && (<table>
         <thead>
           <tr>
             <th>ID</th>
@@ -39,8 +39,8 @@ function ShowEmpComponent() {
           </tr>
         </thead>
         <tbody>
-          {records.map((item,index) => (
-            
+          {records.map((item, index) => (
+
             <tr key={index}>
               <td>{item.id}</td>
               <td>{item.name}</td>
@@ -51,9 +51,9 @@ function ShowEmpComponent() {
           ))}
         </tbody>
       </table>)}
-      </div>
-   
+    </div>
+
   )
 }
 
-export default ShowEmpComponent
+export default ShowEmpComponent   

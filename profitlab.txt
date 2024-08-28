@@ -44,3 +44,9 @@ task
 1.add client side form validation using external libraries(learn react form validation)
 2.context switching props drilling and manage the items in list in client side only
 3.instead of calling from db whenever i add employee it should show there itself
+
+
+27/08/24
+
+add duplicate name validation
+in client and server side.

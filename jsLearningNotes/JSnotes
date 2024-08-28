@@ -1,0 +1,773 @@
+JAVASCRIPT TUTORIALS
+
+*! USE NOTEPAD++ FOR BETTER READING EXPERIENCE.
+
+https://www.youtube.com/watch?v=SajRjc9KKUE&list=PL0Zuz27SZ-6Oi6xNtL_fwCrwpuqylMsgT
+
+https://developer.mozilla.org/en-US/docs/Learn/JavaScript
+
+DAY 1:
+
+
+
+->DATA TYPES:
+
+
+
+1.string -> "",''
+		typeof keyword ->typeof("adheesh") or typeof "adheesh"->o/p->string
+		
+2.number
+3.boolean
+4.undefined
+
+
+
+->VARIABLE DECLARATION:
+
+
+
+	let myName; -->camelcase,and let is the keyword
+	typeof myName --> undefined
+
+	var,let,const -->keywords
+
+
+
+->OPERATORS:
+
+
+
+	+ operator work for concatenation also.
+	let number=20;
+	let name="adhee";
+	let res=number + name;
+	typeof res --> string
+
+	let myBool = number===20;
+	typeof myBool -->boolean
+	myBool->true
+
+	==	equal to
+	===	equal value and equal type
+	!=	not equal
+	!==	not equal value or not equal type
+	>	greater than
+	<	less than
+	>=	greater than or equal to
+	<=	less than or equal to
+	?	ternary operator
+
+	<script src=""></script> -->using this tag we can write js code inside html
+
+
+
+->STRING METHODS:
+
+
+
+1.length
+						0 1 2 3 4 5 6
+	const myVariable = "A d h e e s h"
+	myVariable.length ->7
+
+2.charAt(index pos)
+
+	myVariable.charAt(0) ->A
+
+3.indexOf("sequence")
+
+	myVariable.indexOf("sh") ->5
+	myVariable.indexOf("e") ->3 -->give the first exixting index value
+
+4.lastIndexOf("sequence")
+
+	myVariable.lastIndexOf("h") -->6
+
+5.slice(start,end)
+
+	myVariable.slice(1,4) -->dhe -->4 th char wont include
+	myVariable.slice(5) --> sh -->no ending ,so it will slice all remaining after start index
+
+	end>start
+
+6.toUpperCase()
+
+	myVariable.toUpperCase() --> ADHEESH
+
+7.toLowerCase()
+
+8.includes("string")
+
+	myVariable.includes("eesh") --> true
+	myVariable.includes("gha") -->false
+
+9.split('char')
+
+	myVariable.split('e') --> ["Adh" , "esh"]
+	myVariable.split("") --> ["A","d","h","e","e","s","h"]
+
+	"john,jacob,thomas".split(",") --> ["john" , "jacob" , "thomas"]
+
+more reference:
+
+	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
+	https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Useful_string_methods
+
+
+
+->NUMBER METHODS:
+
+
+1.Number("string")
+
+	let myStr="45"
+	Number(myStr) --> 45 -->number type
+	
+	Number("adheesh") -->NaN ->Not a Number
+	Number(undefined) -->NaN ->Not a Number
+	Number(true) -->1
+	Number(false) -->0
+	
+2.Number.isInteger("string")
+
+	Number.isInteger(myStr) --> true
+	Number.isInteger("34.09728") -->false
+	Number.isInteger("hello") -->false
+	
+3.Number.parseFloat("string")
+
+	Number.parseFloat("45.89") --> 45.89
+	Number.parseFloat("123.45abc") -->123.45
+	
+4.Number.parseInt("string")
+	
+	Number.parseInt("455.17") -->455
+	
+5. toFixed(value)
+	
+	"123.4567".toFixed(2) --> "123.45" --> this toFixed method returns a string so 
+	
+6.toString()
+
+	1234.toString() -->"1234"
+	
+*7. isNaN
+	
+	isNaN("adhee") --> true
+
+
+
+->MATH LIBRARY:
+
+
+
+1.Math.PI ->3.14765724875
+
+2.Math.trunc(Math.PI) --> 3
+  Math.trunc(3.4) --> 3
+  Math.trunc(3.5) --> 3
+  Math.trunc(3.7) --> 3
+
+3.Math.round(Math.PI) --> 3
+  Math.round(3.4) --> 3
+  Math.round(3.5) --> 4
+  Math.round(3.7) --> 4
+  
+4.Math.ceil(3.2) --> 4
+  Math.ceil(3.5) --> 4
+  Math.ceil(3.8) --> 4
+  
+5.Math.floor(3.2) --> 3
+  Math.floor(3.5) --> 3
+  Math.floor(3.8) --> 3
+  
+6.Math.pow(2,3) --> 2*2*2 = 8
+
+7.Math.min(2,4,3,6,7) --> 2
+
+8.Math.max(2,4,3,6,7) --> 7
+
+9.Math.random() --> return a pseudo order number from 0 to 1 like 0.74757653276 , this range include 0 but not 1
+
+
+
+->IF STATEMENTS:
+
+
+same as other languages.
+
+
+
+->SWITCH CASE:
+
+
+same as other languages.
+
+switch(condition){
+	case 1:
+		//code
+		break;
+	default:
+		//codebreak;
+}
+
+
+
+->TERENARY OPERATION:
+
+
+
+condition ? ifTrue : ifFalse
+
+let soup="chicken soup"
+let resp= soup ? "yes,we have soup" : "sorry we dont have soup" 
+console.log(resp) --> "yes , we have soup"
+
+
+let isCustBanned= true;
+let newResp = isCustBanned ? "sorry, for you there is no soup : soup ? "yes, we have soup" : "sorry soup is over" ;
+
+we can chain terenary operator like if else.
+
+let testScore =76;
+let grade = testScore>90 ? "A"
+		  : testScore>80 ? "B"
+		  : testScore>70 ? "C"
+		  : testScore>60 ? "D"
+		  : testScore>50 ? "P"
+		  :"F" ;
+
+
+
+
+DAY 2:
+
+
+
+->USER INPUTS:
+
+
+1.alert():
+
+alert("hello user!")
+
+	it will hault the browser until user click the "ok" button.
+	it does'nt return anything.
+	it is just a waiting.
+	
+	
+2.confirm():
+
+let myBool = confirm("Do you really want to share data?");
+
+	it will give a box like alert ,but it contain both "ok" and "cancel"
+	ok->true
+	cancel->false
+	confirm return boolean value.
+	it is a confirmation from user.
+	
+	
+3.prompt():
+
+let name = prompt("please enter your name")
+
+	it will directly taking input from user.
+	you will get a input box as pop up.
+	in this box there will be "ok" and "cancel".
+	ok->it will take that entered input.
+	cancel->it wont take input,so it will remain as null(name will be null)
+	it can be string,number..anything.
+	
+	*if we press cancel then name will be null, so to manage that we could use Nullish Coalescing Operator.
+	if we enter the name ,then it will show the name.
+	if we press okay without entering the name,then name contain empty string.we could manage this using if statements.
+	console.log(name ?? "you did'nt enter the name")
+	
+	?? -> Nullish Coalescing Operator
+	
+	
+*location.reload() --> this mwthod will reload the browser.
+
+	
+	
+->LOOPS:
+
+
+
+1.while
+
+		let number=0
+		while(number<20){
+			console.log(number);
+			number++
+		}
+		
+number++
+number += 2
+
+
+2.do while
+
+		let number=0
+		do{
+			console.log(number);
+			number++
+		}while(number<20);
+
+
+3.for loop
+
+		for(let i=0;i<10;i++){
+			console.log(i)
+		}
+		
+		
+		for(let i=0;i<10;){
+			console.log(i)
+			i++
+		}
+		
+		
+		let i=0;
+		for(;i<10;i++){
+			console.log(i)
+		}
+		
+		
+		let i=0;
+		for(;i<10;){
+			console.log(i)
+			i++
+		}
+		
+		
+		let name="adheesh"
+		for(let i=0;i<name.length;i++){
+			console.log(name.charAt(i))
+		}
+		
+		
+
+->FUNCTIONS:
+
+
+Methods => built in functions(example: length(), toLowerCase()...
+  
+
+declaration:
+
+1. function sum(n1,n2){
+		
+		//body
+
+   }
+   
+2. const getName = function(email){
+		
+		//body                   this is an anonymous function
+				
+   }
+   
+
+3. const res = (mark) => {
+
+		//body                   this is arrow function
+	
+   }
+   
+   
+ * All these work same
+ 
+ 
+ 
+->VAR,LET,CONST
+
+
+1.var
+	* var x=1
+	  var x=2
+	  console.log(x) --> o/p = 2 , no error
+
+2.let
+	* let x=1
+	  let x=2
+	  console.log(x) --> error , let wont allow to re declare
+	  
+	  let x=1
+		 x=2
+		 console.log(x) --> o/p = 2
+		 
+3.const
+	* const x=1
+			x=2
+		console.log(x) --> error due to re assign value of constant
+		
+		
+
+->SCOPE:
+
+
+Global and Local Scope of var,let,const
+
+var a = 1
+let b = 2
+const c = 3
+
+
+//global scope
+console.log("global")
+    console.log(a); // o/p => 1
+    console.log(b); // o/p => 2
+    console.log(c); // o/p => 3
+
+{
+	//block local scope ( ie, {} is block)
+    var a = 5
+    let b = 6
+    const c = 7
+    console.log("Local")
+    console.log(a); // o/p => 5
+    console.log(b); // o/p => 6
+    console.log(c); // o/p => 7
+    
+}
+function fun(){
+	//function local scope 
+    var a = 5
+    let b = 6
+    const c = 7
+    console.log("Local")
+    console.log(a); // o/p => 5
+    console.log(b); // o/p => 6
+    console.log(c); // o/p => 7
+}
+fun()
+
+
+//global scope
+console.log("global")
+    console.log(a); // o/p => 5
+    console.log(b); // o/p => 2
+    console.log(c); // o/p => 3
+	
+
+ *! avoid using var , try to use let and const.
+ 
+ 
+
+
+->ARRAYS:
+
+
+
+const myArray = []
+
+	myArray[0] = "adhee"
+	myArray[1] = 1000
+	myArray[2] = true
+
+	console.log(myArray) --> [ "adhee" , 1000 , true ]
+	
+const newLen = myArray.push("hello")
+console.log(myArray) --> [ "adhee" , 1000 , true , "hello" ]
+console.log(newLen) --> 4
+
+const lastItem = myArray.pop()
+console.log(myArray) --> [ "adhee" , 1000 , true ]
+console.log(lastItem) --> "hello"
+
+const newLen = myArray.unshift(250)
+console.log(myArray) --> [ 250 , "adhee" , 1000 , true ]
+console.log(newLen) --> 4
+
+const firstItem = myArray.shift()
+console.log(myArray) --> [ "adhee" , 1000 , true ]
+console.log(firstItem) --> 250
+
+delete myArray[1]
+console.log(myArray) --> [ "adhee" , empty , true ]
+console.log(myArray[1]) --> undefined
+
+myArray.splice(1,1)
+splice starting index
+number of element should have splice
+console.log(myArray) --> [ "adhee" , true ]
+console.log(myArray[1]) --> true
+
+myArray.splice(1,1,42)
+console.log(myArray) --> [ "adhee" , 42 , true ]
+console.log(myArray[1]) --> 42
+
+myArray.splice(1,0,1000)
+console.log(myArray) --> [ "adhee" , 1000 , 42 , true ]
+console.log(myArray[1]) --> 1000
+
+		     0     1     2     3     4     5
+let arr = [ "A" , "B" , "C" , "D" , "E" , "F" ]
+
+let newarr = arr.slice(2) 
+console.log(newarr) => [ "C" , "D" , "E" , "F" ]
+
+newarr = arr.slice(2,5)
+console.log(newarr) => [ "C" , "D" , "E" ]
+
+arr.reverese()
+console.log(arr) => [ "F" , "E" , "D" , "C" , "B" , "A" ]
+
+const str = arr.join()
+console.log(str) => A,B,C,D,E,F ->string and , between char and , is part of the string
+
+const newArr = str.split(",")
+console.log(newArr) => [ "A" , "B" , "C" , "D" , "E" , "F" ]
+
+const arrA = [ 1,2,3 ]
+const arrB = [ 4,5,6 ]
+const newarr = arrA.concat(arrB)
+console.log(newarr) => [1,2,3,4,5,6]
+
+Spread operator:
+
+const arrA = [ 1,2,3 ]
+const arrB = [ 4,5,6 ]
+
+const newarr = [ ...arrA, ...arrB ]
+console.log(newarr) => [1,2,3,4,5,6]
+
+
+DAY 3:
+
+
+-> OBJECTS:
+
+
+key-value pair
+
+const myObj = {
+				name : "Adheesh",
+				age  : 24,
+				place: "chennai"
+			  }
+			  
+console.log(myObj.name) => Adheesh
+
+const anotherObj = {
+					  isAlive : true,
+					  answer : 42,
+					  hobbies : [ "football","music","code"],
+					  beverages: {
+									morning : "coffee",
+									afternoon : "coke"
+								 },
+					  action : function(){
+								 return "hello"
+							   },
+					  funAns : function () {
+								 return `the answer is ${this.answer}`
+							   }
+				   }
+console.log(anotherObj.isAlive) or console.log(anotherObj["isAlive"]) => true
+console.log(anotherObj.hobbies[0]) => football
+console.log(anotherObj.beverages.morning) => coffee
+console.log(anotherObj.action()) => hello
+
+
+const vehicle = {
+					wheels : 4,
+					engine : function(){
+								return "vroom"
+							}
+			    }
+				
+const truck = Object.create(vehicle) => inheritance
+
+truck.doors = 2 // adding property door for truck object
+
+console.log(truck) => doors : 2 //it wont show the wheels and engine()
+console.log(truck.wheels) => 4 // inheritance
+console.log(truck.engine()) => vroom //inheritance
+
+
+const car = Object.create(vehicle)
+car.door = 4
+car.engine = function (){
+				return "whooops"
+			}
+console.log(car.wheels) => 4 //inherited from vehicle
+console.log(car.engine()) => whooops // car object engine () overrided , so vehicle engine() is hidden
+
+
+const tesla = Object.create(car)
+console.log(tesla.wheels) => 4 //inherited from vehicle (multi level inheritance)
+console.log(tesla.engine()) => whooops // tesla is based on the car object
+
+tesla.engine = function (){
+				return "shooooos"
+			}
+
+console.log(tesla.engine()) => shooooos //overrided
+
+
+const band = {
+				vocal : "jacob",
+				guitar : "john",
+				violin : "sebastian",
+				drum : "nikolas"
+			} 
+			
+console.log(Object.keys(band)) => ["vocal","guitar","violin","drum"]
+console.log(Object.values(band)) => ["jacob","john","sebastian","nikolas"]
+
+for(let job in band){
+	console.log(`on ${job} it is ${band[job]}`)
+}
+
+o/p =>
+		on vocal it is jacob
+		on guitar it is john
+		on violin it is sebastian
+		on drum it is nikolas
+		
+
+object destructuring:
+
+const {guitar : hey , vocal : hello} = band
+
+console.log(hey) =>john
+console.log(hello) =>jacob
+
+const {guitar,vocal,violin,drum} = band
+
+console.log(guitar) =>john
+console.log(vocal) =>jacob
+
+
+
+->CLASS :
+
+class pizza{
+	
+	constructor(pizzaType,pizzaSize,pizzaCrust) {
+		
+		this.type=pizzaType;
+		this.size=pizzaSize;
+		this.crust=pizzaCrust;
+		this.toppings=[]
+	
+	}
+	
+	getType(){
+		return this.type
+	}
+	setType(type){
+		this.type=type
+	}
+	
+	getSize(){
+		return this.size
+	}
+	setSize(size){
+		this.size=size
+	}
+	
+	getCrust(){
+		return this.crust
+	}
+	setCrust(crust){
+		this.crust=crust
+	}
+	
+	getToppings(){
+		return this.toppings
+	}
+	
+	setToppings(topping){
+		this.toppings.push(topping)
+	}
+	
+	bake(){
+	
+		console.log(`Baking a ${this.type} type, ${this.size} ${this.crust} crust pizza`)
+	
+	}
+
+}
+
+const myPizza = new pizza("pepperoni","medium","original")
+myPizza.bake()
+
+console.log(myPizza.getCrust()) => original
+
+myPizza.setCrust("thin")
+
+
+class pizza{
+	
+	constructor(pizzaType,pizzaSize) {
+		
+		this.type=pizzaType;
+		this.size=pizzaSize;
+	
+	}
+	
+	getType(){
+		return this.type
+	}
+	setType(type){
+		this.type=type
+	}
+	getSize(){
+		return this.size
+	}
+	setSize(size){
+		this.size=size
+	}
+	
+}
+
+class SpecialPizza extends pizza {
+
+	constructor(pizzatype,pizzaSize,pizzaSlices){
+		super(pizzaType,pizzaSize)
+		this.slice=pizzaSlices
+	}
+	
+	slicing(){
+		console.log(`our ${this.type} ,${this.size} pizza has ${this.slice} slices`)
+	}
+
+}
+
+const mySpecPizza = new SpecialPizza("pepperoni","medium",8)
+mySpecPizza.slicing() => our pepperoni ,medium pizza has 8 slices
+
+
+
+
+this._type=pizzaType;
+this._size=pizzaSize;
+this._crust=pizzaCrust;
+
+getType(){
+		return this._type
+	}
+	setType(type){
+		this._type=type
+	}
+	
+	getSize(){
+		return this._size
+	}
+	setSize(size){
+		this._size=size
+	}
+	
+	getCrust(){
+		return this._crust
+	}
+	setCrust(crust){
+		this._crust=crust
+	}
+
+*underscore is to identify the member as private
+
