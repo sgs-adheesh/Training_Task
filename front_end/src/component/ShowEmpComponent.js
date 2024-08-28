@@ -36,10 +36,10 @@ function ShowEmpComponent() {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Department</th>
-                <th>Designation</th>
-                <th>Salary</th>
+                <th>NAME</th>
+                <th>DEPARTMENT</th>
+                <th>DESIGNATION</th>
+                <th>SALARY</th>
               </tr>
             </thead>
             <tbody>
