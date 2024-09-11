@@ -1,4 +1,4 @@
 package org.example.customeException
 
 
-class CustomException(message: String) : Exception(message)
+class CustomException(message: String) : RuntimeException(message)

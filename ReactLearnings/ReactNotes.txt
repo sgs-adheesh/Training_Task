@@ -1,0 +1,236 @@
+folder understanding:
+
+	-> public/index.html 
+		: the only html file working with react that loads into browser
+		: after loading of this html file ,rest is carried by react
+	->src/index.js
+		: in package.json ,mentioned the scripts to run and build the react app.
+		: when we run npm start -> npm react-scripts start 
+		: inside node module->react->react-scripts
+		: from there we will call the index.js
+		: in index.js we will loads the index.html (document.getElementById('root')) , in this DOM where react inject the app.
+		: creating a root element of the react app, every other will be child of this root element
+		: inside this DOM ,react rendering the the components ( App )
+	->src/App.js
+		:this is the parent component for all others
+		:this is injected to the html by the help of index.js
+
+
+
+
+
+
+
+onClick:
+
+	const handleClick1 = () =>{
+		console.log("you clicked it")
+	}
+	
+	
+	const handleClick2 = (name) =>{
+		console.log(`you clicked it ${name}`)
+	}
+	
+	
+	const handleClick3 = (e) =>{
+		console.log(e.target.innerText)
+	}
+	
+	return (
+		<div>
+			<button onClick={handleClick1}>Click it</button>
+			
+			<button onClick={()=>handleClick2("adhee")}>Click it</button>
+			
+			<button onClick={(e)=>handleClick3(e)}>Click it</button>
+		</div>
+		
+	)
+	
+
+useState:
+
+	important!
+	const [count,setCount] = useState(0)
+	
+	const handleClick=()=>{
+		setCount(count+1)
+		console.log(count) // on first click it will show count = 0 . why? it should have been shown 1
+							  console.log(count) it wont reflect the change in setCount in the same block.
+							  so what if in diff block? try
+	}
+	
+	return (
+		<div>
+			<button onClick={handleClick}>Click it</button>
+			
+		</div>
+		
+	)
+	
+	
+	
+	const [count,setCount] = useState(0)
+	
+	const handleClick=()=>{
+		setCount(count+1)
+		console.log(count) // after 1 click here it will show count = 0
+	}
+	
+	const handleClick2=()=>{
+		console.log(count) // after that same 1 click here it will show count = 1
+	}
+	
+	return (
+		<div>
+			<button onClick={handleClick}>Click it</button>
+			<button onClick={handleClick2}>Click it</button>
+			
+		</div>
+		
+	)
+	
+value of the state comes into a function, we do not alter that even though you might use setCount 
+
+Why we usning const ?
+	 ->beacause we donot want to change the state directly. it should have done through setState only
+	 
+	 
+	 
+
+const [item,setItem] = useState([
+	{
+		id:1,
+		checked:false,
+		item:"apple"
+	},
+	{
+		id:2,
+		checked:false,
+		item:"samsung"
+	},
+	{
+		id:3,
+		checked:false,
+		item:"sony"
+	}
+])
+
+const handleCheck=(id)=>{
+	const itemList = items.map((item)=> item.id === id ?
+										{ ...item, checked : !item.checked }:
+										item
+										)
+	setItem(itemList)
+	localStorage.setItem("shopelist",JSON.stringify(listItem))
+}
+
+const handleDelete=(id)=>{
+	const itemList = items.filter((item)=> item.id !==id)
+	setItem(itemList)
+	localStorage.setItem("shopelist",JSON.stringify(listItem))
+}
+
+return (
+		<div>
+			<ul>
+				{items.map((item)=>(
+					<li className="item" key=item.id>
+						<input
+							type="checkbox"
+							onchange={()=>handleCheck(item.id)}
+							checked={item.checked}
+							
+						/>
+						<label>{item.item}</label>
+						<button onClick={()=>handleDelete(item.id)}>Delete</button>
+				))}
+			</ul>
+			
+		</div>
+		
+	)
+	
+	
+
+PROPS AND PROPS DRILLING:
+
+function App() {
+  
+  const [items,setItems]= useState([
+	{
+		id:1,
+		name:"ram"
+	},
+	{
+		id:2,
+		name:"raj"
+	},
+	{
+		id:3,
+		name:"john"
+	}
+  ]);
+  
+  const handleClick = async () =>{
+    const emps = await axios.get('http://localhost:8001/employee')
+    setItems(emps.data)
+    setShow(!show)
+}
+  
+  return (
+    <div className="App">
+      <Header title="Grocery List"/> 
+	  <Content
+		items={items}
+		handleClick={handleClick}
+	  />
+	  <Footer/>
+    </div>
+  );
+}
+
+export default App;
+
+
+function Header(props) {
+  return (
+    <header>
+        <h1>{props.title}</h1>
+    </header>
+  )
+}
+
+export default Header;
+
+
+
+function Content({items,handleClick}) {
+
+
+  return (
+    <main>
+        <button onClick={handleClick}>Show me</button>
+        {show	&&	<table>
+						<thead>
+							<tr>
+								<th>id</th>
+								<th>name</th>
+							</tr>
+						</thead>
+						<tbody>
+							{records.map((item, index) => (
+
+							<tr key={index}>
+								<td>{item.id}</td>
+								<td>{item.name}</td>
+							</tr>
+						</tbody>
+				</table>
+		}
+    </main>
+  )
+}
+
+export default Content

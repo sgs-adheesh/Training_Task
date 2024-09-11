@@ -17,13 +17,13 @@ class EmployeeResource @Inject constructor(private val empService:EmployeeServic
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     fun addEmployee(emp:Employee):Response{
-        return try {
+         try {
             println("in resource post")
             val resp=empService.addEmployee(emp)
-            Response.ok(resp).build()
+            return Response.ok(resp).build()
         } catch (e: Exception) {
             logger.error("Failed to add employee", e)
-            Response.serverError().entity("Internal Server Error..Failed to add employee").build()
+            return Response.status(Response.Status.CONFLICT).entity("Internal Server Error..Failed to add employee").build()
         }
     }
 
@@ -41,9 +41,45 @@ class EmployeeResource @Inject constructor(private val empService:EmployeeServic
            return Response.serverError().entity("Internal Server Error").build()
         }
     }
+
+    @GET
+    @Path("/{emp_id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    fun getEmployeeById(@PathParam("emp_id")emp_id:Int):Response{
+        try {
+            val emp=empService.getById(emp_id)
+            return Response.ok(emp).build()
+        }
+        catch (e: Exception){
+            logger.error("Failed to fetch employee", e)
+            return Response.serverError().entity("Internal Server Error").build()
+        }
+    }
+
+    @DELETE
+    @Path("/{emp_id}")
+    fun deleteEmployee(@PathParam("emp_id")emp_id:Int):Response{
+        try {
+            return Response.ok(empService.deleteById(emp_id)).build()
+        }
+        catch (e:Exception){
+            logger.error("Failed to fetch employee", e)
+            return Response.serverError().entity("Internal Server Error").build()
+        }
+    }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    fun updateEmployee(emp:Employee):Response {
+        try {
+            val resp = empService.updateEmployee(emp)
+            return Response.ok(resp).build()
+        } catch (e: Exception) {
+            logger.error("Failed to update employee", e)
+            return Response.status(Response.Status.CONFLICT).entity("Internal Server Error..Failed to add employee").build()
+        }
+    }
+
+
 }
 
-//fun getEmployee(): List<Employee> {
-//    println("in resorce get")
-//    return empService.getAll()
-//}

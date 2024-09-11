@@ -1,17 +1,24 @@
-import { EmployeeForm } from './component/EmpComponent'
-import React, { useState } from 'react'
-import ShowEmpComponent from './component/ShowEmpComponent';
+import { EmployeeForm } from './components/EmpComponent'
+import React from 'react'
+
+
+import { Route, Routes } from 'react-router-dom';
+import {UpdateComponent} from './components/UpdateComponent';
+import ShowEmpComponent from './components/ShowEmpComponent';
 
 
 function App() {
-  const [show, setShow] = useState(true)
+  
   return (
-    <div className="App">
-      <br></br>
-      <button style={{backgroundColor:'blue'}}onClick={() => setShow(!show)}>{show ? "SHOW details" : "ADD employee"}</button>
-      {show ? <EmployeeForm /> : <ShowEmpComponent />}
-
-    </div>
+   
+      <div className='App'>
+      <Routes>
+        <Route path='/' exact Component={EmployeeForm}/>
+        <Route path='/show' exact Component={ShowEmpComponent}/>
+        <Route path='/update/:id' exact Component={UpdateComponent}/>
+      </Routes>
+      </div>
+    
   );
 }
 

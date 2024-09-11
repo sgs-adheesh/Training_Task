@@ -1,19 +1,16 @@
 .App {
-    max-width: 500px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #0180e8ee;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(18, 16, 16, 0.1);
   }
   
   form {
     display: flex;
     flex-direction: column;
   }
-  .form-group {
-    margin-bottom: 15px;
-}
   
   div {
     margin-bottom: 15px;
@@ -40,6 +37,6 @@
   }
   
   button:hover {
-    background-color: #05411e;
+    background-color: #21c967;
   }
   

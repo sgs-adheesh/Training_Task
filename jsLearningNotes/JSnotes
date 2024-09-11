@@ -769,5 +769,548 @@ getType(){
 		this._crust=crust
 	}
 
-*underscore is to identify the member as private
+*underscore is to identify the member as private but now it is not needed !
 
+
+
+class pizza{
+	type;  //public
+	#size; //private , # infront of varriable
+	#slice=8; //private
+	constructor(pizzaType,pizzaSize) {
+		
+		this.type=pizzaType;
+		this.#size=pizzaSize;
+	
+	}
+	
+	getType(){
+		return this.type
+	}
+	setType(type){
+		this.type=type
+	}
+	getSize(){
+		return this.#size
+	}
+	setSize(size){
+		this.#size=size
+	}
+	
+}
+
+
+
+
+->JSON :
+
+
+const myObj = {
+
+	name : "adhee",
+	age : 24,
+	place : "chennai"
+
+
+}
+
+const sendJSON = JSON.stringify(myObj) => {
+											"name":"adhee",
+											"age":24,
+											"place":"chennai"
+										  }
+
+const respJSON = JSON.parse(sendJSON) =>  {
+											name : "adhee",
+											age : 24,
+											place : "chennai"
+										  }
+										  
+									
+									
+->ERRORS AND ERROR HANDLING :
+	
+	
+"use strict"  //strict mode 
+ 
+ myVar = "hello";
+ console.log(myVar) o/p => error,because we used strict mode,so we have to give variable keyword . ie, const myVar
+						   if there is no "use strict",then this will work fine without variable keyword.
+						   
+
+
+
+
+const makeError=()=>{
+	
+	try{
+		const var = "dave";
+		var="john"; //Type error:reassigning const var
+	}
+	catch(err){
+		console.error(err.stack)
+	}
+	
+}
+
+makeError()
+
+
+custome error handling:
+
+const makeError=()=>{
+	
+	try{
+		throw new customeError("this is a custome error")
+	}
+	catch(err){
+		console.error(err.stack)
+	}
+	
+}
+
+function customeError(message) {
+	this.message=message
+	this.name="customeError"
+	this.stack=`${this.name}:${this.message}`
+}
+
+
+-> Js DOM :
+
+const view1 = document.getElementById("view1")
+or
+const view2 = document.querySelector("#view2")
+
+
+-> EVENT LISTENER :
+
+
+const h2 = div.querySelector("h2")
+
+const doSomething=()=>{
+	alert("hello")
+}
+
+h2.addEventListener("click" , doSomething, false) --> default is false
+
+
+
+event.stopPropagation() ->stop delegate from one event to adjacent event
+
+
+
+
+->WEB STORAGE API :
+
+SESSION STORAGE: it will only stay for the particular session
+
+	const obj = {
+	
+		name : "adhee",
+		logName : function(){
+					console.log(this.name)
+				}
+	
+	}
+	
+	
+	const myArr = ["eat","sleep","work"]
+	
+	
+	sessionStorage.setItem("myStore",obj)
+	const myData = sessionStorage.getItem("myStore")
+	console.log(myData) => it will be in this string format
+							session storage always tries to store every type as string.
+							
+	sessionStorage.setItem("myStore",myArr)
+	const myData = sessionStorage.getItem("myStore")
+	console.log(myData) => it will be in this string format
+	console.log(typeof myData) => string
+	
+	
+so,
+	sessionStorage.setItem("myStore",JSON.stringify(obj)) // it will store as string , but in the format of json
+	const myData = JSON.parse(sessionStorage.getItem("myStore")) // it will parse the string that of json format into object.
+	console.log(myData) => Now it will be an object
+	console.log(typeof myData) =>object
+	
+	
+	sessionStorage.setItem("myStore",JSON.stringfy(myArr))
+	const myData = JSON.parse(sessionStorage.getItem("myStore"))
+	console.log(myData) => array => ["eat","sleep","work"]
+	console.log(typeof myData) => array
+	
+	
+LOCAL STORAGE : it will stay even if we close the website/browser
+
+	
+	localStorage.setItem("myStore",JSON.stringify(obj)) // it will store as string , but in the format of json
+	const myData = JSON.parse(localStorage.getItem("myStore")) // it will parse the string that of json format into object.
+	console.log(myData) => Now it will be an object
+	console.log(typeof myData) =>object
+	
+	
+	localStorage.setItem("myStore",JSON.stringfy(myArr))
+	const myData = JSON.parse(localStorage.getItem("myStore"))
+	console.log(myData) => array => ["eat","sleep","work"]
+	console.log(typeof myData) => array
+	
+	
+	localStorage.removeItem("myStore")
+	localStorage.clear() // it will remove all the localStorage
+	
+	
+
+
+->MODULES :
+
+EXPORT AND IMPORT SYNTAX:
+
+every module can have one export default.
+
+EXPORT:
+1 way:
+
+const play=()=>{
+	return "play"
+}
+
+const sleep=()=>{
+	return "sleep"
+}
+
+const eat=()=>{
+	return "eat"
+}
+
+export default play;
+
+export {sleep,eat}
+
+2nd way:
+
+export default function play(){ //for deafult export we have to use function keyword type function , not arrow function
+	return "play"
+}
+
+export const sleep=()=>{ //for normal export we can use arrow function
+	return "sleep"
+}
+
+export const eat=()=>{
+	return "eat"
+}
+
+IMPORT:
+
+import play from "./file.js"
+import {sleep,eat} from "./file.js"
+
+renaming the imported functions: as keyword
+
+import {sleep as sl,eat as e} from "./file.js"
+
+
+import * as myroutine from "./file.js" //importing all function
+
+myroutine.play() // it wont work because this is a default function, so we have to call like -> myroutine.default()
+myroutine.sleep()
+myroutine.eat()
+
+
+
+export default class Users{
+	constructor(email,name){
+		this._email=email
+		this._name=name
+	}
+	greeting(){
+		return `hey ${this.-name} your reg email is ${this.-email}`
+	}
+	
+}
+
+
+
+->HIGHER ORDER FUNCTIONS:
+	=> a higher order function is a function that does atleast one of the following
+		
+		1.take one or more function as argument
+		2.return a function as result
+		
+	
+1. forEach
+
+	posts.forEach(post => {
+		console.log(post)
+	})
+	
+2.filter
+
+	const filteredPost = posts.filter(post =>{
+							return post.usereId===2
+						})
+						
+	it will return the post of userId 2 to the varriable filteredPost
+	
+3.map
+
+	const mappedPost = filteredPost.map( post => {
+							return post.id * 10
+						})
+	it will return the post id mapped to the mappedPost based on the given logic
+	
+4.reduce
+
+	const reducedPostValue =  mappedPost.reduce((sum,post)=>{
+						return sum + post
+					})
+					
+					
+
+
+
+->FETCH API :
+
+	=>Callback , Promises , Thenables , Async , Await
+	
+	
+CALLBACK:
+	
+	function firstFunction(parameter,callback){
+		//do stufff
+		callback()
+	}
+	
+	//callback hell
+	firstFunction(para , function(){
+		//do stuff
+		secondFunction(para ,function(){
+			thirdFunction(para, function(){
+			
+			
+			})
+		})
+	})
+	
+	
+ JAVASCRIPT IS SYNCHRONOUS , ie, DOING ONE THING AT A TIME, NO THREAD
+ 
+ 
+ to get rid of this callback hell  use promises.
+
+ 
+PROMISES:
+
+	3 states : pending , fullfilled , rejected
+	
+	JS is usually synchronous,but promises return async code.
+	
+-FULLFILLED
+	
+const myPromise = new Promise((resolve,reject)=>{
+	const error = false;
+	if(!error){
+		resolve("yes ! promise revolved")
+	}
+	else{
+		reject("no ! promise rejected")
+	}
+})
+
+console.log(myPromise) // it wont give the value, it will give the state only => state : fullfilled
+
+for getting the value, we have to do promise chaining using then
+
+myPromise.then(value => {
+	console.log(value) // it will give the value => value : yes ! promise revolved
+})
+
+
+myPromise.then(value => {
+	return value + 10
+}).then((newValue) => {
+	return newValue + 20
+}).then((finalValue) => {
+	console.log(finalValue) // o/p => yes ! promise revolved1020
+})
+
+this is chaining.
+
+-REJECTED:
+
+when error happened , ie, error = true
+
+const myPromise = new Promise((resolve,reject)=>{
+	const error = true;
+	if(!error){
+		resolve("yes ! promise revolved")
+	}
+	else{
+		reject("no ! promise rejected")
+	}
+})
+
+console.log(myPromise) // it wont give the value, it will give the state only => state : rejected
+
+for getting the value, we have to do promise chaining using then 
+ie , Thenable chaning
+
+myPromise.then(value => {
+	console.log(value) 
+}).catch(err => {
+	console.error(err) // no ! promise rejected 
+})
+
+
+myPromise.then(value => {
+	return value + 10
+}).then((newValue) => {
+	return newValue + 20
+}).then((finalValue) => {
+	console.log(finalValue)
+}).catch(err =>{
+	console.error(err) // no ! promise rejected 
+})
+
+-PENDING
+
+const myPromise = new Promise((resolve,reject)=>{
+	const error = false;
+	if(!error){
+		resolve("yes ! promise revolved")
+	}
+	else{
+		reject("no ! promise rejected")
+	}
+})
+
+const myNextPromise = new Promise((resolve,reject)=>{
+	setTimeOut(function (){
+		console.log("my next promise!")
+	},3000)
+})
+
+myNextPromise.then(value => {
+	console.log(value) 
+}).catch(err => {
+	console.error(err)
+})
+
+myPromise.then(value => {
+	console.log(value) 
+}).catch(err => {
+	console.error(err) 
+})
+
+output => yes ! promise revolved
+		  my next promise!
+		  
+		  because the myNextPromise was pending due to timeout so the myPromise executed first
+		  
+		  
+		  
+
+
+const users = fetch("http://application/user")
+
+console.log(users) =>o/p : pending state
+
+we have to take the promise of fetch api
+
+fetch("http://application/user")
+.then(resp =>{
+	console.log(resp) // it will be in the form of readable stream, so we have to change it into json
+	return resp.json() // json format
+})
+.then(data =>{
+	console.log(data) //json
+	data.forEach(user =>{
+		console.log(user) // print each user separately
+	})
+})
+
+
+const users = fetch("http://application/user")
+.then(resp =>{
+	console.log(resp) // it will be in the form of readable stream, so we have to change it into json
+	return resp.json() // json format
+})
+.then(data =>{
+	console.log(data) //json
+	data.forEach(user =>{
+		console.log(user) // print each user separately
+	})
+})
+
+console.log(users)
+
+o/p=>
+	pending state // why it is executed first? because it wont wait for promises to execute
+	users,it is actually a promise, so it will go first and so it will tell js to execute the reamining and come back because promise is pending.
+	
+	
+-ASYNC, AWAIT
+
+	const myUser = {
+		userList: []
+	}
+	
+	const myFirstFunc = async () =>{
+		const resp = await fetch("http://application/user")
+		const jsonData = await resp.json()
+		return jsonData
+	}
+	
+	const mySecondFunc = async () =>{
+		const data = await myFirstFunc()
+		myUser.userList = data
+		console.log(myUser.userList)
+	}
+	
+	mySecondFunc() // this will execute after
+	console.log(myUser.userList) // this will execute first , so o/p will be empty list : []
+	
+	
+	
+-FETCH
+
+	const getData = async () =>{
+		const resp = await fetch("http://application/user",{
+			method : "GET",
+			headers : {
+						Accept : "application/json"
+					 }
+		})
+		
+		const jsonData = await resp.json()
+		
+		console.log(jsonData)
+	}
+	
+	getData()
+	
+	
+	
+	
+	
+	const object = {
+		id : "765euguet3",
+		data : "hello teammates how are you"
+	}
+	const postData = async (obj) =>{
+		const resp = await fetch("http://application/user",{
+			method : "POST",
+			headers : {
+						Content-Type : "application/json"
+					  }
+			body : JSON.stringify(obj)
+		})
+		
+		const jsonResponse = await resp.json()
+		
+		console.log(jsonResponse)
+	}
+	
+	postData(object)

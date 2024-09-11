@@ -18,4 +18,23 @@ interface EmployeeDao {
     @SqlQuery("SELECT * FROM employees")
     @RegisterBeanMapper(Employee::class)
     fun getAll():List<Employee>
+
+
+    @SqlQuery("SELECT * FROM employees WHERE id=:empId")
+    @RegisterBeanMapper(Employee::class)
+    fun getById(@Bind("empId") empId: Int): Employee
+
+
+
+    @SqlUpdate("DELETE FROM employees WHERE id=:empId")
+    fun deleteById(@Bind("empId") empId: Int)
+
+
+    @SqlUpdate("UPDATE employees SET id=:id,name=:name,department=:department,designation=:designation,salary=:salary WHERE id=:id")
+    fun updateEmp(
+        @Bind("id")id:Int,
+        @Bind("name")name: String,
+        @Bind("department")department: String,
+        @Bind("designation")designation: String,
+        @Bind("salary")salary: Double)
 }

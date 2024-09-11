@@ -1,15 +1,17 @@
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    position: relative;
   }
   
   th, td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 6px;
   }
   
   th {
     background-color: #f2f2f2;
-    text-align: left;
+    text-align: center;
+    
   }
   
