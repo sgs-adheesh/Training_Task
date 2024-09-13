@@ -117,9 +117,9 @@ export const EmployeeForm = () => {
 
     };
 
-    const handleShow = () => {
+    const handleBack = () => {
         try {
-            navigate(`/show`)
+            navigate(`/`)
 
             setShow(!show)
 
@@ -158,11 +158,13 @@ export const EmployeeForm = () => {
     return (
         //<EmpContext.Provider  value={{show,setShow}}>
             <form onSubmit={handleSubmit} >
-                <br></br>
-                <button style={{ backgroundColor: 'blue' }} onClick={() => handleShow()}>SHOW Employee</button>
-                <br></br>
-                <h1 className="text-3xl font-bold text-center  bg-slate-500 bg-clip-padding">REGISTRATION FORM</h1>
-                <br></br>
+                <div className="mt-6 flex items-center justify-end gap-x-6">
+                    <button onClick={() => handleBack()} type="button" className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Back</button>                
+                </div>
+                <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+                    <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 animate-pulse">REGISTRATION FORM</h2>
+                </div>
+                
                 {dupname
                     ? <span className="flex items-center text-sm font-semibold text-red-600 animate-bounce">
                         {response}

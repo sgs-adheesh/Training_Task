@@ -211,6 +211,23 @@ function Content({items,handleClick}) {
 
   return (
     <main>
+        <ItemList
+			items={items}
+			handleClick={handleClick}
+		/>
+    </main>
+  )
+}
+
+export default Content
+
+
+
+function ItemList({items,handleClick}) {
+
+
+  return (
+    <main>
         <button onClick={handleClick}>Show me</button>
         {show	&&	<table>
 						<thead>
@@ -233,4 +250,76 @@ function Content({items,handleClick}) {
   )
 }
 
-export default Content
+export default ItemList;
+
+props drilling : -> the data from App component going to Content component , and Content component to ItemList component.
+					This type of flow of data or functions accross the components is called props drilling
+					
+
+
+->useEffect:
+
+	const [item,setItem] = useState(JSON.parse(localStorage.getItem('shoppinglist')) || []) -> why || [] ? => bcz, if we delete localstorage ,we may try to filter,
+																											  it will give error, so give empty array []
+
+	useEffect(()=>{
+		console.log("render")
+	})
+	
+	-> it will run whenever changes occur in component
+	
+	useEffect(()=>{
+		console.log("render")
+	},[item])
+	
+	-> if we add dependencies , ie [] , then useEffect will only run ath load time, ie, only once
+	-> if the dependenecies changes then useEffect run its anonymous function
+	-> what we gave inside the dependencies,ie item, when that updates , the useEffect also will re run.
+	
+	
+	console.log("before useEffect")
+	
+	useEffect(()=>{
+		console.log("inside useEffect")
+	},[item])
+	
+	console.log("after useEffect")
+	
+	o/p=> before useEffect
+		  after useEffect
+		  inside useEffect
+		  
+	WHY ?
+	
+	->useEffect is asynchronous
+	->in every rendering useEffect will run after every other line of codes render.
+	
+	if we made a change(not for item).it will show only->  before useEffect
+											               after useEffect
+														   
+														   
+														   
+														   
+->FETCH API:
+															
+	using async await:
+	
+		useEffect(()=>{
+		
+			try{
+			
+				const fetchItems=async()=>{
+					const response = await fetch(API_URL)
+					const itemList = response.json()
+					setItem(itemList)
+				}
+			}catch(err){
+				
+				console.error(err)
+				
+			}
+			
+			
+		
+		
+		},[])

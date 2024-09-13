@@ -12,16 +12,18 @@ export const UpdateComponent = () => {
   const [department, setDepartment] = useState('');
   const [designation, setDesignation] = useState('');
   const [salary, setSalary] = useState('');
-
   const [response, setResponse] = useState('');
   const [dupname, setDupname] = useState(false);
-
   const [deptrecords, setDeptrecords] = useState([])
-
   const [desigrecord, setDesigrecord] = useState([])
-
   const navigate = useNavigate()
+  const [error, setError] = useState({
+    name: '',
+    department: '',
+    designation: '',
+    salary: '',
 
+});
 
 
   useEffect(() => {
@@ -95,7 +97,7 @@ export const UpdateComponent = () => {
     console.log("record")
     console.log(record)
 
-    // if (validate()) {
+   if (validate()) {
     console.log({ id, name, department, designation, salary });
     const Emp = { id, name, department, designation, salary }
 
@@ -108,7 +110,7 @@ export const UpdateComponent = () => {
     })
       .then((resp) => {
         if (resp.status !== 200) {
-          setResponse("Employee not Updated..")
+          setResponse("Employee not Updated..duplicate name")
           setDupname(true)
           console.log(resp)
 
@@ -121,20 +123,59 @@ export const UpdateComponent = () => {
       })
 
       .catch((error) => {
-        console.error(error)
-      })
+        setResponse("Employee not Updated..duplicate name")
+        setDupname(true)
+        console.error(error.message)
+      }).finally(console.log(response))
 
     setName('')
     setDepartment('')
     setDesignation('')
     setSalary('')
-    setDupname(false)
-    navigate('/show')
-    // }
+    //setDupname(false)
+
+    
+    //
+     }
 
 
 
   };
+   
+  const validate = () => {
+    const newErrors = {}
+    let isValid = true
+    const Emp = { name, department, designation, salary }
+    if (Emp.name.length < 3) {
+        newErrors.name = "Name should have atleast 3 letter"
+        isValid = false
+    }
+    if (Emp.department === '') {
+        newErrors.department = "Select the department"
+        isValid = false
+    }
+    if (Emp.designation === '') {
+        newErrors.designation = "Select the designation"
+        isValid = false
+    }
+    if (Emp.salary <= 1000) {
+        newErrors.salary = "Salary should greater than 1000"
+        isValid = false
+    }
+    setError(newErrors)
+    return isValid
+
+}
+const handleBack = () => {
+  try {
+      navigate(`/`)
+
+  }
+  catch (err) {
+      console.error('Error in edit emp', err)
+  }
+}
+
 
   // const handleShow = () => {
   //     try {
@@ -177,9 +218,12 @@ export const UpdateComponent = () => {
   return (
     //<EmpContext.Provider  value={{show,setShow}}>
     <form onSubmit={handleUpdate} >
-
-      <h1 className="text-3xl font-bold text-center  bg-slate-500 bg-clip-padding">UPDATION FORM</h1>
-      <br></br>
+      <div className="mt-6 flex items-center justify-end gap-x-6">
+          <button onClick={() => handleBack()} type="button" className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Back</button>                
+      </div>
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 animate-pulse">UPDATION FORM</h2>
+      </div>
       {dupname
         ? <span className="flex items-center text-sm font-semibold text-red-600 animate-bounce">
           {response}
@@ -200,7 +244,7 @@ export const UpdateComponent = () => {
           onChange={(e) => (setName(e.target.value))}
         />
 
-        {/* {error.name && <span style={{ color: 'red' }} >{error.name}</span>} */}
+        {error.name && <span style={{ color: 'red' }} >{error.name}</span>}
       </div>
 
       <div className="form-group">
@@ -220,7 +264,7 @@ export const UpdateComponent = () => {
           }
 
         </select>
-        {/* {error.department && <span style={{ color: 'red' }} >{error.department}</span>} */}
+       {error.department && <span style={{ color: 'red' }} >{error.department}</span>}
       </div>
 
       <div className="form-group">
@@ -236,7 +280,7 @@ export const UpdateComponent = () => {
             <option key={desig.id} value={desig.designation}>{desig.designation}</option>
           ))}
         </select>
-        {/* {error.designation && <span style={{ color: 'red' }} >{error.designation}</span>} */}
+        {error.designation && <span style={{ color: 'red' }} >{error.designation}</span>}
       </div>
       <div className="form-group">
         <label htmlFor="salary" className="block text-sm font-medium leading-6 text-gray-900">Salary:</label>
@@ -247,7 +291,7 @@ export const UpdateComponent = () => {
 
 
         />
-        {/* {error.salary && <span style={{ color: 'red' }} >{error.salary}</span>} */}
+        {error.salary && <span style={{ color: 'red' }} >{error.salary}</span>}
       </div>
 
       <button style={{ backgroundColor: 'green' }} type='submit' className="block text-sm font-medium leading-6">UPDATE</button>

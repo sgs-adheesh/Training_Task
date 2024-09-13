@@ -79,20 +79,23 @@ function ShowEmpComponent() {
     setShowTable(!showTable);
   };
 
-  const handleBack=()=>{
-    navigate('/')
+  const handleAdd=()=>{
+    navigate('/add')
   }
 
 
   return (
     <div>
-      <button style={{ backgroundColor: 'blue' }} onClick={handleBack} >BACK</button>
-      <br></br>
-      <br></br>
-      <button style={{ backgroundColor: 'green' }} onClick={handleShowTable} >{showTable ? "HIDE details" : "GET details"}</button>
-      <br></br>
-      <br></br>
-      <form className='searchForm'>
+      <div className="mt-6 flex items-center justify-center gap-x-6">
+        <button onClick={handleAdd} type="button" className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 align-middle">Add Employee</button>
+        <button onClick={handleShowTable} type="button" className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 align-middle">{showTable?"Hide details":"Show All Employee"}</button>
+      </div>
+      
+      {showTable && (
+        <><div className="sm:mx-auto sm:w-full sm:max-w-sm">
+            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 animate-pulse">LIST OF EMPLOYEES</h2>
+          </div>
+          <form className='searchForm'>
         <label htmlFor='searchTab'>
           <input 
             id='search'
@@ -104,9 +107,6 @@ function ShowEmpComponent() {
           />
         </label>
       </form>
-      {showTable && (
-        <><h1 className="text-3xl font-bold text-center bg-slate-500 bg-clip-padding">EMPLOYEE LIST</h1>
-          <br></br>
           <table>
             <thead>
               <tr>
@@ -128,8 +128,9 @@ function ShowEmpComponent() {
                   <td>{item.department}</td>
                   <td>{item.designation}</td>
                   <td>{item.salary}</td>
-                  <td><button style={{ backgroundColor: 'blue' }} onClick={() => handleEdit(item)}>Edit</button></td>
-                  <td><button style={{ backgroundColor: 'red' }} onClick={() => handleDelete(item)}>Delete</button></td>
+                  <td><button onClick={() => handleEdit(item)} type="button" className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Edit</button></td>
+                  <td><button onClick={() => handleDelete(item)} type="button" className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Delete</button></td>
+
                 </tr>
               ))}
 
