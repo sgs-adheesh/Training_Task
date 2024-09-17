@@ -159,7 +159,7 @@ export const EmployeeForm = () => {
         //<EmpContext.Provider  value={{show,setShow}}>
             <form onSubmit={handleSubmit} >
                 <div className="mt-6 flex items-center justify-end gap-x-6">
-                    <button onClick={() => handleBack()} type="button" className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Back</button>                
+                    <button onClick={() => handleBack()} type="button" className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-transform duration-300 ease-in-out">Back</button>                
                 </div>
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 animate-pulse">REGISTRATION FORM</h2>
@@ -227,7 +227,7 @@ export const EmployeeForm = () => {
                     {error.salary && <span style={{ color: 'red' }} >{error.salary}</span>}
                 </div>
 
-                <button style={{ backgroundColor: 'green' }} type='submit' className="block text-sm font-medium leading-6">SUBMIT</button>
+                <button  type='submit' className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">SUBMIT</button>
 
             </form>
         //</EmpContext.Provider>

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import '../Emp.css'
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useLocation } from 'react-router-dom'
 
 export const UpdateComponent = () => {
   const location = useLocation();
-  const [id, setId] = useState(0)
+  //const [id, setId] = useState(0)
+  const {id} =useParams()
   const [record, setRecord] = useState([])
   const [name, setName] = useState('');
   const [department, setDepartment] = useState('');
@@ -27,7 +28,7 @@ export const UpdateComponent = () => {
 
 
   useEffect(() => {
-    setId(location.state.id)
+    //setId(location.state.id)
     fetchData(id)
     const fetchDept = async () => {
       try {
@@ -101,7 +102,7 @@ export const UpdateComponent = () => {
     console.log({ id, name, department, designation, salary });
     const Emp = { id, name, department, designation, salary }
 
-    axios.put("http://localhost:8001/employee/", {
+    axios.put(`http://localhost:8001/employee/`, {
       id: Emp.id,
       name: Emp.name,
       department: Emp.department,
@@ -219,7 +220,7 @@ const handleBack = () => {
     //<EmpContext.Provider  value={{show,setShow}}>
     <form onSubmit={handleUpdate} >
       <div className="mt-6 flex items-center justify-end gap-x-6">
-          <button onClick={() => handleBack()} type="button" className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Back</button>                
+          <button onClick={() => handleBack()} type="button" className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Back</button>                
       </div>
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 animate-pulse">UPDATION FORM</h2>
@@ -294,7 +295,7 @@ const handleBack = () => {
         {error.salary && <span style={{ color: 'red' }} >{error.salary}</span>}
       </div>
 
-      <button style={{ backgroundColor: 'green' }} type='submit' className="block text-sm font-medium leading-6">UPDATE</button>
+      <button type='submit' className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">UPDATE</button>
 
     </form>
     //</EmpContext.Provider>

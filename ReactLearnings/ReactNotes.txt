@@ -320,6 +320,49 @@ props drilling : -> the data from App component going to Content component , and
 			}
 			
 			
-		
+		(async ()=> await fetchItems())(); //fetchItems does not return anything, so this async IIFE(instantly invoked function expression)is not required.
+											we can just make a call to fetchItems()
+		fetchItems()
 		
 		},[])
+		
+
+
+->ROUTER:
+
+	<Router>
+		<Header/>
+		<Navbar/>
+		<Switch>
+			<Route exact path="/">
+				<Home/>
+			</Route>
+			<Route exact path="/post">   }=> exact , if it is not used then / is sharing in home also, this is actually working like a water fall, so even though 			
+				<NewPost/>							we are calling	/post it will give Home ie , /, to avoid this we using exact path
+			</Route>
+			<Route exact path="/post/:id">
+				<PostPage/>
+			</Route>
+			<Route path='/about' exact Component={About}/>			}=> beacuse here we are not passing any props, so this is enough
+			<Route path='*' exact Component={Missing}/>
+		</Switch>
+		<Footer/>
+	</Router>
+	
+	
+	<Link to='/' >Home</Link> }=> similiar to href in html
+	
+	
+	useParams->
+	
+	const {id} = useParams() }=> we are passing id as a path param , so to use that id we use useParams
+	
+	useHistory->
+	
+	const history = useHistory() }=> similiar to useNavigate()
+				
+					history.push('/') => it will redirect to / , ie, Home
+					
+	const navigate = useNavigate()
+					
+					navigate('/') => it will redirect to / , ie, Home
