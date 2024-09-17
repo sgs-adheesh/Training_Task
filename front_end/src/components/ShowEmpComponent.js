@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 function ShowEmpComponent() {
 
   const [filteredRecords, setFilteredRecords] = useState([]);
-  const [search,setSearch]=useState('')
+  const [search, setSearch] = useState('')
   const [records, setRecords] = useState([])
   const [showTable, setShowTable] = useState(false);
   const navigate = useNavigate()
@@ -15,18 +15,18 @@ function ShowEmpComponent() {
 
   useEffect(() => {
     fetchData();
-    
+
   }, []);
 
 
   useEffect(() => {
 
-    if(empitem!=null){
-      navigate(`/update/${empitem}`,{state:{id:empitem}})
+    if (empitem != null) {
+      navigate(`/update/${empitem}`, { state: { id: empitem } })
     }
-  }, [empitem,navigate]);
+  }, [empitem, navigate]);
 
-  
+
   const fetchData = async () => {
     try {
       const response = await axios.get('http://localhost:8001/employee');
@@ -37,15 +37,15 @@ function ShowEmpComponent() {
     }
   };
 
-  const searchEmp=(e)=>{
-    
+  const searchEmp = (e) => {
+
     const searchValue = e.target.value.toLowerCase();
     setSearch(searchValue);
     const filteredRecords = records.filter(item =>
       (item.name.toLowerCase().includes(searchValue))
-    ||(item.department.toLowerCase().includes(searchValue))
-    ||(item.designation.toLowerCase().includes(searchValue))
-    ||(item.salary.toString().includes(searchValue))
+      || (item.department.toLowerCase().includes(searchValue))
+      || (item.designation.toLowerCase().includes(searchValue))
+      || (item.salary.toString().includes(searchValue))
     );
     setFilteredRecords(filteredRecords);
   }
@@ -53,11 +53,11 @@ function ShowEmpComponent() {
 
   const handleDelete = async (item) => {
     try {
-     
-        const res = await axios.delete(`http://localhost:8001/employee/${item.id}`)
-        console.log(res)
-        fetchData()
-        alert(`Proceeding for the termination of ${item.name}`)
+
+      const res = await axios.delete(`http://localhost:8001/employee/${item.id}`)
+      console.log(res)
+      fetchData()
+      alert(`Proceeding for the termination of ${item.name}`)
 
     }
     catch (err) {
@@ -65,7 +65,7 @@ function ShowEmpComponent() {
     }
   }
 
-  const handleEdit =  (item) => {
+  const handleEdit = (item) => {
     try {
       console.log(item)
       setEmpitem(item.id)
@@ -81,7 +81,7 @@ function ShowEmpComponent() {
     setShowTable(!showTable);
   };
 
-  const handleAdd=()=>{
+  const handleAdd = () => {
     navigate('/add')
   }
 
@@ -90,25 +90,34 @@ function ShowEmpComponent() {
     <div>
       <div className="mt-6 flex items-center justify-center gap-x-6">
         <button onClick={handleAdd} type="button" className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 align-middle">Add Employee</button>
-        <button onClick={handleShowTable} type="button" className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 align-middle">{showTable?"Hide details":"Show All Employee"}</button>
+        <button onClick={handleShowTable} type="button" className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 align-middle">{showTable ? "Hide details" : "Show All Employee"}</button>
       </div>
-      
+
       {showTable && (
         <><div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 animate-pulse">LIST OF EMPLOYEES</h2>
-          </div>
+          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 animate-pulse">LIST OF EMPLOYEES</h2>
+        </div>
           <form className='searchForm'>
-        <label htmlFor='searchTab' >
-          <input 
-            id='search'
-            type="text"
-            role='searchbox'
-            placeholder='search employee'
-            value={search}
-            onChange={(e)=>searchEmp(e)} 
-          />
-        </label>
-      </form>
+            <div className="relative">
+              <div className="absolute pointer-events-auto">
+                <svg className="absolute text-slate-500 h-11 w-5 left-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <label htmlFor='searchTab' >
+                <input
+                  id='search'
+                  type="text"
+                  role='searchbox'
+                  placeholder='Search employee'
+                  value={search}
+                  onChange={(e) => searchEmp(e)}
+                />
+              </label>
+            </div>
+
+
+          </form>
           <table className="min-w-full divide-y divide-gray-400">
             <thead className="bg-gray-50">
               <tr>
@@ -124,10 +133,9 @@ function ShowEmpComponent() {
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredRecords.map((item, index) => (
 
-                <tr key={index} className={`${
-                  index % 2 === 0 ? 'bg-gray-100' : 'bg-white'
-                } hover:bg-gray-200 transition-colors duration-200`}>
-                  
+                <tr key={index} className={`${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'
+                  } hover:bg-gray-200 transition-colors duration-200`}>
+
                   <td className="px-6 py-3 text-center text-xs font-medium text-black uppercase tracking-wider">{item.id}</td>
                   <td className="px-6 py-3 text-center text-xs font-medium text-black uppercase tracking-wider">{item.name}</td>
                   <td className="px-6 py-3 text-center text-xs font-medium text-black uppercase tracking-wider">{item.department}</td>

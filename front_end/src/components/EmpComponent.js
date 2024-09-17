@@ -192,7 +192,7 @@ export const EmployeeForm = () => {
                         onChange={handleDepartmentChange}
                     >
 
-                        <option value="" disabled>select department</option>
+                        <option className='accent-orange-400' value="" disabled>select department</option>
                         {deptrecords.map((dept) => (
                             <option key={dept.id} value={dept.department} >{dept.department}</option>
                         ))}
